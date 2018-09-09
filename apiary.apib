@@ -3,34 +3,15 @@ HOST: http://lukaapi.apiblueprint.org/
 
 # Luka API
 
-Luka documentation describes the endpoints neccesary to manage perons, billers 
-and pledges (subsciption). 
+Luka documentation.
 
-## Enviorments
+## Introduction
 
-Enviorments
+basic description. Link to readme file.
 
-## Tools for testing
+## Testing
 
-Testing tools
-
-## Status codes
-
-`200` OK - the request was successful (some API calls may return 201 instead).
-
-`201` Created - the request was successful and a resource was created.
-
-`204` No Content - the request was successful but there is no representation to return (i.e. the response is empty).
-
-`400` Bad Request - the request could not be understood or was missing required parameters.
-
-`401` Unauthorized - authentication failed or user doesn't have permissions for requested operation.
-
-`403` Forbidden - access denied.
-
-`404` Not Found - resource was not found.
-
-`405` Method Not Allowed - requested method is not supported for resource.
+Teting guidelines.
 
 #Group Person
 
@@ -47,8 +28,8 @@ Create a Person.
 Get a specific Person based on his handle (phone number).
 
 +   Parameter
-    + id: 573331234567 - Person id (phonenumber). 
-    
+    + id: 573331234567 - Person id (phonenumber).
+
 +   Response 200 (application/json)
     + Attributes
         - Include Person
@@ -59,34 +40,34 @@ Get all people in the system.
 
 +   Parameter
     + country: Croatia (optional, string)
-    
+
 +   Response 200 (application/json)
 
     + Attributes (array[Person])
-    
-    
 
-   
-        
+
+
+
+
 ### Get Person's Pledges [GET /person/{handle}/pledge]
 
-A Pledge is an agreement between People and Billers. 
+A Pledge is an agreement between People and Billers.
 
 ### Get Person's Payments [GET /person/{handle}/payment]
 
-A Payment is a process of paying off a Pledge. 
-Get Payments related to a Person. 
+A Payment is a process of paying off a Pledge.
+Get Payments related to a Person.
 
 ### Get Person's Payment Query [GET /person/{handle}/payment{?status}]
 
-A payment is a process of paying off a pledge. 
+A payment is a process of paying off a pledge.
 Get payments related to a person based on a status.
 
 #Group Biller
 
 ## Biller Collection [/biller]
 
-A provider of service that completes the pledge with a person. 
+A provider of service that completes the pledge with a person.
 
 ### Create a Biller [POST /biller]
 
@@ -94,7 +75,7 @@ Create a Biller.
 
 ### Get all Billers [GET /biller]
 
-Get all Billers. 
+Get all Billers.
 
 ### Get a Biller [GET /biller/{handle}]
 
@@ -102,13 +83,13 @@ Get a Biller based on his handle.
 
 ### Get Biller Pledges [GET /biller/{handle}/pledge]
 
-A Pledge is an agreement between People and Billers. 
+A Pledge is an agreement between People and Billers.
 Get Pledges that are related to a Biller.
 
 ### Get Biller Pledges Query [GET /biller/{handle}/pledge{?person}]
 
-A query that gets specific Pledges from a Biller.  
-Get Pledges that are related to a Biller and a specific Person. 
+A query that gets specific Pledges from a Biller.
+Get Pledges that are related to a Biller and a specific Person.
 
 ## Payment Collection [/payment]
 
