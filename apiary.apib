@@ -75,9 +75,13 @@ Get a Payment status.
 
 #Group Biller
 
+Test.
+
 ## Biller Collection  [/biller]
 
 A provider of service that completes the pledge with a person.
+
++ Attributes  (Biller_)
 
 ### Create a Biller [POST /biller]
 
@@ -102,31 +106,59 @@ A Contract between a Person and a Biller.
 
 + Attributes  (Contract)
 
+### Create a contract [POST /contract]
+
+Creates a Contract.
+
 # Data Structures
 
-## Person (object)
+##  Location  (object)
+- street: nikola tesla house (string) - Street
+- city: Smiljan (string) - City
+- zip: 53211 (string) - Zip code
+- country: Croatia (string) - Country
+- countryCode: HRV (string) - Country code ISO
+
+##  Labels  (object)
+- labels (object) - Free input object
+    - firstLabel: firstText (string) - Additional labels
+    - firstLabel: secondText (string) - Additional labels
+
+##  Person  (object)
 - id: 1234123423 (string, required) - Id
 - firstName: Nikola (string, required) - First name
 - lastName: Tesla (string, required) - Last name
 - phone: 38553745530 (string, optional) - Phone number
 - email: nikola@tesla.com (string) - Email address
 - facebook: 1234231423423 (string) - Facebook url
-- street: nikola tesla house (string) - Street
-- city: Smiljan (string) - City
-- zip: 53211 (string) - Zip code
-- country: Croatia (string) - Country
-- countryCode: HRV (string) - Country code ISO
-- created: "2016-08-17T18:58:47.630Z - Date created
-- labels (object) - Additional information
-    - test: test (string) - Free field
+- Include Location
+- created: 2016-08-17T18:58:47.630Z - Date created
+- Include Labels
 
-## Biller (object)
-- id: 'fdsafdsfa' (number) - Biller id
-- handle: '$yambal' (string) - Biller handle
+
+##  Biller  (object)
+- id: 'fdsafdsfa' (string) - Biller id
+- handle: yambal-bo (string, required) - Handle
+- legalName: Yambal Bolivias (string) - Legal name
+- website: https://www.yambal.bo (string) - website
+- Include Location
+- Include Labels
+
+##  Products  (object)
+- id: 23434123 (string) - Product id
+- source: yambal-bo (string, required)  - Biller Id
+- signer: hash1234234 (string, required)  - Core has signer
+- Include Labels
 
 ## Contract (object)
-- id: 'fdsafdsfa' (number) - Biller id
-- handle: '$yambal' (string) - Biller handle
+- id: 'fdsafdsfa' (string) - Biller id
+- target: product-id (string, required) - Person Id
+- Include Labels
 
 ## Payment (object)
-- id: '13242134' (number) - Payment Id
+- id: d1efdsafds (string) - Payment Id
+- source: person-id (string) - Person Id
+- target: product-id (string) - Product Id
+- amount: 1000 (number) - Amount of payment
+- symbol: BOB (string)  - Currency symbol
+- Include Labels
