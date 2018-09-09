@@ -6,8 +6,7 @@ HOST: http://lukaapi.apiblueprint.org/
 Luka documentation.
 
 NOTE: This document is **work in Progress**.
-TODOs:
- - add error status reply
+TODOs: add error status reply
 
 ## Introduction
 
@@ -17,23 +16,23 @@ basic description. Link to readme file.
 
 Testing guidelines.
 
-#Group Person
-
-A Person that signs contracts and payments with billers.
+# Group Person
 
 ## Person Collection [/person]
 
-+ Attributes (Person)
+A Person that signs contracts and payments with billers.
+
++ Attributes  (Person)
 
 ### Create a Person [POST /biller]
 
 Create a Person.
 
 + Request
-  + Attributes(Person)
+  + Attributes  (Person)
 
 + Response 201 (application/json)
-  + Attributes(Person)
+  + Attributes  (Person)
 
 ### Get a Person [GET /person/{id}]
 
@@ -43,58 +42,26 @@ Get a specific Person based on his handle (phone number).
   + id: 38553745530 - Person id (phone number).
 
 + Response 200 (application/json)
-  + Attributes (Person)
+  + Attributes  (Person)
 
 ### Get all People [GET /person]
 
 Get all people in the system.
 
 +   Parameter
-    + countryCode: HR (optional, string)
-      + default: BO
+    + countryCode:  HR (optional, string)
+      + default:  BO
 
-+   Response 200 (application/json)
-    + Attributes (array[Person])
-
-### Get Person's Contracts [GET /person/{id}/contract]
-
-A Pledge is an agreement between People and Billers.
-
-### Get Person's Payments [GET /person/{id}/payment]
-
-Get Payments related to a Person.
-
-#Group Biller
-
-## Biller Collection [/biller]
-
-A provider of service that completes the pledge with a person.
-
-### Create a Biller [POST /biller]
-
-Create a Biller.
-
-### Get all Billers [GET /biller]
-
-Get all Billers.
-
-### Get a Biller [GET /biller/{handle}]
-
-Get a Biller based on his handle.
-
-### Get Biller Pledges [GET /biller/{handle}/pledge]
-
-A Pledge is an agreement between People and Billers.
-Get Pledges that are related to a Biller.
-
-### Get Biller Pledges Query [GET /biller/{handle}/pledge{?person}]
-
-A query that gets specific Pledges from a Biller.
-Get Pledges that are related to a Biller and a specific Person.
++   Response 200  (application/json)
+    + Attributes  (array[Person])
 
 ## Payment Collection [/payment]
 
-### Create a Payment [POST /payment]
+A Payment that completes a contract between Person and Biller.
+
++ Attributes  (Payment)
+
+### Create a Payment  [POST /payment]
 
 Initiate a Payment between Biller and Person.
 
@@ -106,9 +73,34 @@ Update the status of the payment.
 
 Get a Payment status.
 
-### Get a Payment Query [GET /payment{?status, person, biller}]
+#Group Biller
 
-Get specific Payments.
+## Biller Collection  [/biller]
+
+A provider of service that completes the pledge with a person.
+
+### Create a Biller [POST /biller]
+
+Create a Biller.
+
+### Get all Billers [GET /biller]
+
+Get all Billers.
+
+### Get a Biller  [GET /biller/{handle}]
+
+Get a Biller based on his handle.
+
+### Get Biller Contract  [GET /biller/{handle}/pledge]
+
+A Pledge is an agreement between People and Billers.
+Get Pledges that are related to a Biller.
+
+## Contract Collection  [/contract]
+
+A Contract between a Person and a Biller.
+
++ Attributes  (Contract)
 
 # Data Structures
 
