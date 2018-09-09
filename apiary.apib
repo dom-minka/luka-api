@@ -119,6 +119,10 @@ Creates a Contract.
 - country: Croatia (string) - Country
 - countryCode: HRV (string) - Country code ISO
 
+##  Label (object)
+- firstLabel: firstText (string) - First label
+- secondLabel: secondTest (string) - Second label
+
 ##  Person  (object)
 - id: 1234123423 (string, required) - Id
 - firstName: Nikola (string, required) - First name
@@ -126,9 +130,9 @@ Creates a Contract.
 - phone: 38553745530 (string, optional) - Phone number
 - email: nikola@tesla.com (string) - Email address
 - facebook: 1234231423423 (string) - Facebook url
+- created: '2016-08-17T18:58:47.630Z' - Date created
 - location  (Location)
-- created: 2016-08-17T18:58:47.630Z - Date created
-
+- labels (Label)
 
 
 ##  Biller  (object)
@@ -136,16 +140,21 @@ Creates a Contract.
 - handle: yambal-bo (string, required) - Handle
 - legalName: Yambal Bolivias (string) - Legal name
 - website: https://www.yambal.bo (string) - website
-- Include Location
+- created: '2016-08-17T18:58:47.630Z' - Date created
+- location (Location)
+- labels (Label)
 
 ##  Products  (object)
 - id: 23434123 (string) - Product id
 - source: yambal-bo (string, required)  - Biller Id
 - signer: hash1234234 (string, required)  - Core has signer
+- created: '2016-08-17T18:58:47.630Z' - Date created
+- labels (Label)
 
 ## Contract (object)
 - id: 'fdsafdsfa' (string) - Biller id
 - target: product-id (string, required) - Person Id
+- labels (Label)
 
 ## Payment (object)
 - id: d1efdsafds (string) - Payment Id
@@ -153,3 +162,4 @@ Creates a Contract.
 - target: product-id (string) - Product Id
 - amount: 1000 (number) - Amount of payment
 - symbol: BOB (string)  - Currency symbol
+- labels (Label)
