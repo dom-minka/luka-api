@@ -119,10 +119,6 @@ Creates a Contract.
 - country: Croatia (string) - Country
 - countryCode: HRV (string) - Country code ISO
 
-##  Labels  (object)
-- labels (object) - Free input object
-    - firstLabel: firstText (string)
-
 ##  Person  (object)
 - id: 1234123423 (string, required) - Id
 - firstName: Nikola (string, required) - First name
@@ -131,8 +127,7 @@ Creates a Contract.
 - email: nikola@tesla.com (string) - Email address
 - facebook: 1234231423423 (string) - Facebook url
 - created: 2016-08-17T18:58:47.630Z - Date created
-- Include Locations
-- Include Labels
+- Include Location
 
 
 ##  Biller  (object)
@@ -141,18 +136,15 @@ Creates a Contract.
 - legalName: Yambal Bolivias (string) - Legal name
 - website: https://www.yambal.bo (string) - website
 - Include Location
-- Include Labels
 
 ##  Products  (object)
 - id: 23434123 (string) - Product id
 - source: yambal-bo (string, required)  - Biller Id
 - signer: hash1234234 (string, required)  - Core has signer
-- Include Labels
 
 ## Contract (object)
 - id: 'fdsafdsfa' (string) - Biller id
 - target: product-id (string, required) - Person Id
-- Include Labels
 
 ## Payment (object)
 - id: d1efdsafds (string) - Payment Id
@@ -160,4 +152,3 @@ Creates a Contract.
 - target: product-id (string) - Product Id
 - amount: 1000 (number) - Amount of payment
 - symbol: BOB (string)  - Currency symbol
-- Include Labels
