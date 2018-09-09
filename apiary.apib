@@ -6,6 +6,8 @@ HOST: http://lukaapi.apiblueprint.org/
 Luka documentation.
 
 NOTE: This document is **work in Progress**.
+TODOs:
+ - add error status reply
 
 ## Introduction
 
@@ -13,13 +15,15 @@ basic description. Link to readme file.
 
 ## Testing
 
-Teting guidelines.
+Testing guidelines.
 
 #Group Person
 
 ## Person Collection [/person]
 
-A Person that signs contracts with billers and makes payments.
+A Person that signs contracts and payments with billers.
+
++ Attributes (Person)
 
 ### Create a Person [POST /biller]
 
@@ -46,7 +50,8 @@ Get a specific Person based on his handle (phone number).
 Get all people in the system.
 
 +   Parameter
-    + country: Croatia (optional, string)
+    + countryCode: HR (optional, string)
+      + default: BO
 
 +   Response 200 (application/json)
     + Attributes (array[Person])
@@ -111,14 +116,15 @@ Get specific Payments.
 - id: 1234123423 (string, required) - Id
 - firstName: Nikola (string, required) - First name
 - lastName: Tesla (string, required) - Last name
-- phone: 38553745530 (string) - Phone number
-- email: nikola@tesla.com (string) - Email
-- facebook: 1234231423423 (string) - Facebook
+- phone: 38553745530 (string, optional) - Phone number
+- email: nikola@tesla.com (string) - Email address
+- facebook: 1234231423423 (string) - Facebook url
 - street: nikola tesla house (string) - Street
 - city: Smiljan (string) - City
 - zip: 53211 (string) - Zip code
 - country: Croatia (string) - Country
 - countryCode: HRV (string) - Country code ISO
+- created: "2016-08-17T18:58:47.630Z - Date created
 - labels (object) - Additional information
     - test: test (string) - Free field
 
