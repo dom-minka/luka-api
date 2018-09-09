@@ -1,0 +1,157 @@
+FORMAT: 1A
+HOST: http://lukaapi.apiblueprint.org/
+
+# Luka API
+
+Luka documentation describes the endpoints neccesary to manage perons, billers 
+and pledges (subsciption). 
+
+## Enviorments
+
+Enviorments
+
+## Tools for testing
+
+Testing tools
+
+## Status codes
+
+`200` OK - the request was successful (some API calls may return 201 instead).
+
+`201` Created - the request was successful and a resource was created.
+
+`204` No Content - the request was successful but there is no representation to return (i.e. the response is empty).
+
+`400` Bad Request - the request could not be understood or was missing required parameters.
+
+`401` Unauthorized - authentication failed or user doesn't have permissions for requested operation.
+
+`403` Forbidden - access denied.
+
+`404` Not Found - resource was not found.
+
+`405` Method Not Allowed - requested method is not supported for resource.
+
+#Group Person
+
+## Person Collection [/person]
+
+A decision maker that signs pledges with billers and makes payments.
+
+### Create a Person [POST /biller]
+
+Create a Person.
+
+### Get a Person [GET /person/{id}]
+
+Get a specific Person based on his handle (phone number).
+
++   Parameter
+    + id: 573331234567 - Person id (phonenumber). 
+    
++   Response 200 (application/json)
+    + Attributes
+        - Include Person
+
+### Get all People [GET /person]
+
+Get all people in the system.
+
++   Parameter
+    + country: Croatia (optional, string)
+    
++   Response 200 (application/json)
+
+    + Attributes (array[Person])
+    
+    
+
+   
+        
+### Get Person's Pledges [GET /person/{handle}/pledge]
+
+A Pledge is an agreement between People and Billers. 
+
+### Get Person's Payments [GET /person/{handle}/payment]
+
+A Payment is a process of paying off a Pledge. 
+Get Payments related to a Person. 
+
+### Get Person's Payment Query [GET /person/{handle}/payment{?status}]
+
+A payment is a process of paying off a pledge. 
+Get payments related to a person based on a status.
+
+#Group Biller
+
+## Biller Collection [/biller]
+
+A provider of service that completes the pledge with a person. 
+
+### Create a Biller [POST /biller]
+
+Create a Biller.
+
+### Get all Billers [GET /biller]
+
+Get all Billers. 
+
+### Get a Biller [GET /biller/{handle}]
+
+Get a Biller based on his handle.
+
+### Get Biller Pledges [GET /biller/{handle}/pledge]
+
+A Pledge is an agreement between People and Billers. 
+Get Pledges that are related to a Biller.
+
+### Get Biller Pledges Query [GET /biller/{handle}/pledge{?person}]
+
+A query that gets specific Pledges from a Biller.  
+Get Pledges that are related to a Biller and a specific Person. 
+
+## Payment Collection [/payment]
+
+### Create a Payment [POST /payment]
+
+Initiate a Payment between Biller and Person.
+
+### Update a Payment status [PUT /payment]
+
+Update the status of the payment.
+
+### Get a Payment [GET /payment/{handle}]
+
+Get a Payment status.
+
+### Get a Payment Query [GET /payment{?status, person, biller}]
+
+Get specific Payments.
+
+# Data Structures
+
+## Person (object)
+- id: 1234123423 (string, required) - Id
+- firstName: Nikola (string, required) - First name
+- lastName: Tesla (string, required) - Last name
+- phone: 38553745530 (string) - Phone number
+- email: nikola@tesla.com (string) - Email
+- facebook: 1234231423423 (string) - Facebook
+- street: nikola tesla house (string) - Street
+- city: Smiljan (string) - City
+- zip: 53211 (string) - Zip code
+- country: Croatia (string) - Country
+- countryCode: HRV (string) - Country code ISO
+- labels (object) - Additional information
+    - test: test (string) - Free field
+
+## Biller (object)
+- id: 'fdsafdsfa' (number) - Biller id
+- handle: '$yambal' (string) - Biller handle
+
+## Contract (object)
+- id: 'fdsafdsfa' (number) - Biller id
+- handle: '$yambal' (string) - Biller handle
+
+## Payment (object)
+- id: '13242134' (number) - Payment Id
