@@ -145,6 +145,41 @@ Get Contracts that are related to a Biller.
 + Response 200 (application/json)
   + Attributes  (array[Product])
   
+## Product Collection [/product]
+
+A Product provided by the Biller. 
+
+### Create a Product [POST /product]
+
+Creates a Product.
+
++ Request
+  + Attributes  (Product)
+
++ Response 201 (application/json)
+  + Attributes  (Product)
+  
+### Get a Product [GET /product/{handle}]
+
+Gets a Prodcut.
+
++ Parameter
+  + handle: 213438985485299 - Contract handle.
+
++ Response 200 (application/json)
+  + Attributes  (Product)
+  
+### Get all Products [GET /product?countryCode={countryCode}]
+
+Gets Products for a specific country.
+
++ Parameter
+   + countryCode:  HR (optional, string)
+      + default:  BO
+
++ Response 200 (application/json)
+  + Attributes  (Product)
+
 
 ## Contract Collection  [/contract]
 
@@ -164,7 +199,7 @@ Creates a Contract.
 
 ### Get a contract [GET /contract/{handle}]
 
-Creates a Contract.
+Gets a Contract.
 
 + Parameter
   + handle: 213438985485299 - Contract handle.
