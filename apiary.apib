@@ -36,7 +36,17 @@ Create a Person.
 + Response 201 (application/json)
   + Attributes  (Person)
 
-### Get a Person [GET /person/{id}]
+### Get a Person [GET /person/{handle}]
+
+Get a specific Person based on his handle (phone number).
+
++ Parameter
+  + handle: 213438985485299 - Person handle (Facebook id).
+
++ Response 200 (application/json)
+  + Attributes  (Person)
+  
+### Update a Person [PUT /person/{handle}]
 
 Get a specific Person based on his handle (phone number).
 
@@ -46,7 +56,7 @@ Get a specific Person based on his handle (phone number).
 + Response 200 (application/json)
   + Attributes  (Person)
 
-### Get all People [GET /person]
+### Get all People [GET /person?countryCode={countryCode}]
 
 Get all people in the system.
 
@@ -97,15 +107,34 @@ Biller.
 
 Create a Biller.
 
-### Get all Billers [GET /biller]
++ Request
+  + Attributes  (Biller)
+
++ Response 201 (application/json)
+  + Attributes  (Biller)
+
+### Get all Billers [GET /biller?countryCode={countryCode}]
 
 Get all Billers.
 
-### Get a Biller  [GET /biller/{id}]
++   Parameter
+    + countryCode:  HR (optional, string)
+      + default:  BO
+
++   Response 200  (application/json)
+    + Attributes  (array[Biller])
+
+### Get a Biller  [GET /biller/{handle}]
 
 Get a Biller based on his handle.
 
-### Get Biller Contract  [GET /biller/{id}/contract]
++ Parameter
+  + handle: 213438985485299 - Biller handle (Facebook id).
+
++ Response 200 (application/json)
+  + Attributes  (Biller)
+
+### Get Biller Products  [GET /biller/{handle}/product]
 
 A Contract is an agreement between People and Billers.
 Get Contracts that are related to a Biller.
@@ -114,7 +143,43 @@ Get Contracts that are related to a Biller.
   + handle: yambal-bo - Biller handle.
 
 + Response 200 (application/json)
-  + Attributes  (array(Contracts))
+  + Attributes  (array[Product])
+  
+## Product Collection [/product]
+
+A Product provided by the Biller. 
+
+### Create a Product [POST /product]
+
+Creates a Product.
+
++ Request
+  + Attributes  (Product)
+
++ Response 201 (application/json)
+  + Attributes  (Product)
+  
+### Get a Product [GET /product/{handle}]
+
+Gets a Prodcut.
+
++ Parameter
+  + handle: 213438985485299 - Contract handle.
+
++ Response 200 (application/json)
+  + Attributes  (Product)
+  
+### Get all Products [GET /product?countryCode={countryCode}]
+
+Gets Products for a specific country.
+
++ Parameter
+   + countryCode:  HR (optional, string)
+      + default:  BO
+
++ Response 200 (application/json)
+  + Attributes  (Product)
+
 
 ## Contract Collection  [/contract]
 
@@ -130,6 +195,16 @@ Creates a Contract.
   + Attributes  (Contract)
 
 + Response 201 (application/json)
+  + Attributes  (Contract)
+
+### Get a contract [GET /contract/{handle}]
+
+Gets a Contract.
+
++ Parameter
+  + handle: 213438985485299 - Contract handle.
+
++ Response 200 (application/json)
   + Attributes  (Contract)
 
 # Data Structures
@@ -171,6 +246,7 @@ Creates a Contract.
 - detail: Yambal Bolivia Postpago (string, required) - Description
 - signer: hash1234234 (string, required)  - Core account
 - created: '2016-08-17T18:58:47.630Z' - Date created
+- location (Location)
 - labels (Label) - Additional info about Product
 
 ## Contract (object)
@@ -178,7 +254,7 @@ Creates a Contract.
 - source: person-handle (string, required) - Person handle
 - target: product-handle (string, required) - Product handle
 - amount: 1000 (string, optional)- Default amount of the Contract
-- symbol: BOB (string, option) - Default currency
+- symbol: BOB (string, optional) - Default currency
 - nature: monthly (string) - Nature of the contract
 - labels (Label) - Additional info about Contract
 
