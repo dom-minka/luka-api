@@ -52,6 +52,9 @@ Get a specific Person based on his handle (phone number).
 
 + Parameter
   + handle: 213438985485299 - Person handle (Facebook id).
+  
++ Request
+  + Attributes (Person)
 
 + Response 200 (application/json)
   + Attributes  (Person)
@@ -92,6 +95,20 @@ Get a Payment status.
 
 + Response 200 (application/json)
   + Attributes  (Payment)
+  
+### Update a Payment [PUT /payment/{handle}]
+
+Get a Payment status.
+
++ Parameter
+  + handle: 38553745530 - Payment id.
+
++ Request
+    + Attributes (Payment)
+
++ Response 200 (application/json)
+  + Attributes  (Payment)
+
 
 #Group Biller
 
@@ -148,6 +165,8 @@ Get Contracts that are related to a Biller.
 ## Product Collection [/product]
 
 A Product provided by the Biller. 
+
++ Attributes  (Product)
 
 ### Create a Product [POST /product]
 
@@ -227,7 +246,7 @@ Gets a Contract.
 - phone: 38553745530 (string, optional) - Phone number
 - email: nikola@tesla.com (string, optional) - Email address
 - facebook: https://www.facebook.com/213438985485299 (string) - Facebook url
-- created: '2016-08-17T18:58:47.630Z' - Date created
+- created: 2016-08-17T18:58:47.630Z - Date created
 - location  (Location)
 - labels (Label) - Additional info about Peron
 
@@ -236,7 +255,7 @@ Gets a Contract.
 - handle: yambal-bo (string, required) - Handle
 - detail: Yambal Bolivias (string) - Legal name
 - facebook: https://www.facebook.com/314324123 (string) - website
-- created: '2016-08-17T18:58:47.630Z' - Date created
+- created: 20160817T18:58:47.630Z - Date created
 - location (Location)
 - labels (Label) - Additional info about Biller
 
@@ -245,7 +264,7 @@ Gets a Contract.
 - source: yambal-bo (string, required)  - Biller handle
 - detail: Yambal Bolivia Postpago (string, required) - Description
 - signer: hash1234234 (string, required)  - Core account
-- created: '2016-08-17T18:58:47.630Z' - Date created
+- created: 20160817T18:58:47.630Z - Date created
 - location (Location)
 - labels (Label) - Additional info about Product
 
