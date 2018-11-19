@@ -70,88 +70,51 @@ Get all people in the system.
 +   Response 200  (application/json)
     + Attributes  (array[Person])
 
-## Payment Collection [/payment]
-
-A Payment for a product provided by the Biller.
-
-+ Attributes  (Payment)
-
-### Create a Payment  [POST /payment]
-
-Initiate a Payment between Biller and Person.
-
-+ Request
-  + Attributes  (Payment)
-
-+ Response 201 (application/json)
-  + Attributes  (Payment)
-
-### Get a Payment [GET /payment/{handle}]
-
-Get a Payment status.
-
-+ Parameter
-  + handle: 38553745530 - Payment id.
-
-+ Response 200 (application/json)
-  + Attributes  (Payment)
-  
-### Update a Payment [PUT /payment/{handle}]
-
-Get a Payment status.
-
-+ Parameter
-  + handle: 38553745530 - Payment id.
-
-+ Request
-    + Attributes (Payment)
-
-+ Response 200 (application/json)
-  + Attributes  (Payment)
 
 
-#Group Biller
+
+#Group Company
 
 A contract provider that delivers products payed by the person.
 
-## Biller Collection  [/biller]
+## Company Collection  [/company]
 
-Biller.
+Company.
 
-+ Attributes  (Biller)
++ Attributes  (Company)
 
-### Create a Biller [POST /biller]
+### Create a Biller [POST /Company]
 
 Create a Biller.
 
 + Request
-  + Attributes  (Biller)
+  + Attributes  (Company)
 
 + Response 201 (application/json)
-  + Attributes  (Biller)
+  + Attributes  (Company)
+  
+### Get a Company  [GET /company/{handle}]
 
-### Get all Billers [GET /biller?countryCode={countryCode}]
+Get a Company based on his handle.
 
-Get all Billers.
++ Parameter
+  + handle: companyName - company handle (Facebook id).
+
++ Response 200 (application/json)
+  + Attributes  (Company)
+
+### Get all Companies [GET /company?countryCode={countryCode}]
+
+Get all Companies.
 
 +   Parameter
     + countryCode:  HR (optional, string)
       + default:  BO
 
 +   Response 200  (application/json)
-    + Attributes  (array[Biller])
+    + Attributes  (array[Company])
 
-### Get a Biller  [GET /biller/{handle}]
-
-Get a Biller based on his handle.
-
-+ Parameter
-  + handle: 213438985485299 - Biller handle (Facebook id).
-
-+ Response 200 (application/json)
-  + Attributes  (Biller)
-
-### Get Biller Products  [GET /biller/{handle}/product]
+### Get Company Products  [GET /biller/{handle}/product]
 
 A Contract is an agreement between People and Billers.
 Get Contracts that are related to a Biller.
@@ -198,8 +161,49 @@ Gets Products for a specific country.
 
 + Response 200 (application/json)
   + Attributes  (Product)
+  
+# Group Payment
 
+## Payment Collection [/payment]
 
+A payment refers to a one-off payment to another person or company. 
+A payment si usually asyncrohnus and requires various steps if third parties are involved. 
+
++ Attributes  (Payment)
+
+### Create a Payment  [POST /payment]
+
+Initiate a Payment between Biller and Person.
+
++ Request
+  + Attributes  (Payment)
+
++ Response 201 (application/json)
+  + Attributes  (Payment)
+
+### Get a Payment [GET /payment/{handle}]
+
+Get a Payment status.
+
++ Parameter
+  + handle: 38553745530 - Payment id.
+
++ Response 200 (application/json)
+  + Attributes  (Payment)
+  
+### Update a Payment [PUT /payment/{handle}]
+
+Get a Payment status.
+
++ Parameter
+  + handle: 38553745530 - Payment id.
+
++ Request
+    + Attributes (Payment)
+
++ Response 200 (application/json)
+  + Attributes  (Payment)
+  
 ## Contract Collection  [/contract]
 
 A Contract between a Person and a Biller.
@@ -225,63 +229,99 @@ Gets a Contract.
 
 + Response 200 (application/json)
   + Attributes  (Contract)
+  
+## Transfer Collection [/transfer]
+
+A transfer is a one-off transaction where you move money between two Minka accounts.
+
+### Create a Payment  [POST /payment]
+
+Initiate a Transfer between two wallets.
+
++ Request
+  + Attributes  (Payment)
+
++ Response 201 (application/json)
+  + Attributes  (Payment)
 
 # Data Structures
 
-##  Location  (object)
+##  Locale  (object)
 - street: nikola tesla house (string) - Street
 - city: Smiljan (string) - City
 - zip: 53211 (string) - Zip code
 - country: Croatia (string) - Country
 - countryCode: HRV (string) - Country code ISO
 
-##  Label (object)
-- firstLabel: firstText (string) - First label
-- secondLabel: secondTest (string) - Second label
+
+##  Labels (object)
+- 1sLabel: firstText (string) - First label
+- snLabel: secondTest (string) - Second label
 
 ##  Person  (object)
 - handle: 213438985485299 (string, required) - User handle (facebookId)
-- firstName: Nikola (string, required) - First name
-- lastName: Tesla (string, required) - Last name
-- phone: 38553745530 (string, optional) - Phone number
-- email: nikola@tesla.com (string, optional) - Email address
-- facebook: https://www.facebook.com/213438985485299 (string) - Facebook url
-- created: 2016-08-17T18:58:47.630Z - Date created
-- location  (Location)
-- labels (Label) - Additional info about Peron
+- fiName: Nikola (string, required) - First name
+- laName: Tesla (string, required) - Last name
+- phone1: 38553745530 (string, optional) - Phone number
+- email1: nikola@tesla.com (string, optional) - Email address
+- faceid: https://www.facebook.com/213438985485299 (string) - Facebook url
+- create: dateCreated (string, required) - Date created
+- locale  (Locale)
+- labels (Labels) - Additional info about Peron
 
 
-##  Biller  (object)
-- handle: yambal-bo (string, required) - Handle
+##  Company  (object)
+- handle: yambal_bo (string, required) - Handle
+- number: 12345 (string, optional) - Tax Id number
 - detail: Yambal Bolivias (string) - Legal name
-- facebook: https://www.facebook.com/314324123 (string) - website
-- created: 20160817T18:58:47.630Z - Date created
-- location (Location)
-- labels (Label) - Additional info about Biller
+- facebo: https://www.facebook.com/314324123 (string) - website
+- create: dateCreated (string, required) - Date created
+- locale (Locale)
+- labels (Labels) - Additional info about Biller
+
+##  Bridge  (object)
+- handle: yambal_bo (string, required) - Handle
+- detail: Sintesis Bolivia (string) - Legal name
+- verify: urlurl (string) - affirm url
+- action: urlurl (string) - action payment url
+- create: dateCreated (string, required) - Date created
+- labels (Labels) - Additional info about Biller
+- locale (Locale)
+
 
 ##  Product  (object)
-- handle: yambal-bo-postpago (string) - Handle
-- source: yambal-bo (string, required)  - Biller handle
+- handle: yambal_bo_postpago (string) - Handle
+- source: yambal_bo (string, required)  - Company handle
 - detail: Yambal Bolivia Postpago (string, required) - Description
-- signer: hash1234234 (string, required)  - Core account
-- created: 20160817T18:58:47.630Z - Date created
-- location (Location)
-- labels (Label) - Additional info about Product
+- created: dateCreated (string, required) - Date created
+- locale (Locale)
+- labels (Labels) - Additional info about Product
+- bridge (Bridge) - Bridge information
 
 ## Contract (object)
 - handle: generatedid (string) - Autogenerated Id
+- detail: descriptionContract (string) - Description of the contract
 - source: person-handle (string, required) - Person handle
 - target: product-handle (string, required) - Product handle
 - amount: 1000 (string, optional)- Default amount of the Contract
 - symbol: BOB (string, optional) - Default currency
-- nature: monthly (string) - Nature of the contract
-- labels (Label) - Additional info about Contract
+- nature: monthly (string) - Nature of the contract 
+- labels (Labels) - Additional info about Contract
 
 ## Payment (object)
-- id: d1efdsafds (string) - Payment Id
+- handle: d1efdsafds (string) - Payment Id
+- source: handle (string, required) - Wallet Id
+- target: handle (string, required) - Wallet Id
+- amount: 1000 (number, required) - Amount of payment
+- symbol: BOB (string, required)  - Currency symbol
+- detail: descriptionDetail (string) - description
+- expiry: datum (string) - Date due (for requests)
+- status: INITIATED (string) - Payment status (TBD)
+- created: dateCreated (string, required) - Date created
+- labels (Labels) - Additional info about Payment
+
+## Wallet (object)
+- handle: d1efdsafds (string) - Wallet Id
 - source: person-id (string) - Person Id
-- target: product-id (string) - Product Id
-- amount: 1000 (number) - Amount of payment
-- symbol: BOB (string)  - Currency symbol
-- status: INITIATED (string) - Payment status
-- labels (Label) - Additional info about Payment
+- create: dateCreated (string, required) - Date created
+- labels (Labels) - Additional info about Wallet
